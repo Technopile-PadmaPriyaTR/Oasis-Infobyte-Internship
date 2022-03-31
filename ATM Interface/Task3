@@ -1,0 +1,111 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class atminterface {
+
+	public static void main(String[] args) {
+		String name="Padma Priya";
+		String pass="abcdef";
+		int option,accno,transfer,withdraw,deposit,balance=0;
+		ArrayList<String> history = new ArrayList<String>();
+		String uname,password,message,accholder;
+		Scanner s=new Scanner(System.in);
+		System.out.println("Enter username");
+		uname=s.nextLine();
+		System.out.println("Enter Password");
+		password=s.nextLine();
+		if(name.equals(uname)) {
+			if(pass.equals(password)) {
+				while(true) {
+				System.out.println("---------------------------");
+				System.out.println("\n"+"Choose action to be done "+"\n");
+				System.out.println("---------------------------" + "\n");
+				System.out.print("1. Transaction History"+"\t");
+				System.out.print("2. Withdraw"+"\t");
+				System.out.print("3. Deposit"+"\t");
+				System.out.print("4. Transfer"+"\t");
+				System.out.println("5. Quit"+"\t");
+				option=s.nextInt( );
+				switch(option) {
+				case 1:
+				{
+					    System.out.println("-------------------------");
+						System.out.println("Your Transaction History |");
+						System.out.println("-------------------------");
+						for(String his: history)
+						{
+							System.out.println(his);
+						}
+						break;
+				}
+					
+				case 2:{
+					System.out.println("Enter Amount to be withdrawn : ");
+					withdraw=s.nextInt( );
+					if (balance >= withdraw) {
+						balance = balance - withdraw;
+						message=String.format("Withdrawl of Rs. %d",withdraw);
+						history.add(message);
+						System.out.println("\n"+"You have successfully withdrawn Rs. "+withdraw+ " and your current balance is Rs. "+balance);
+					}
+					else {
+						System.out.println("Insufficient Balance ");
+					}
+					break;
+				}
+				case 3:{
+					System.out.println("Enter Amount to be deposited : ");
+					deposit=s.nextInt( );
+					balance = balance + deposit;
+					message=String.format("Deposit of Rs. %d",deposit);
+					history.add(message);
+					System.out.println("\n"+"You have successfully deposited Rs. "+deposit+ " and your current balance is Rs. "+balance);
+					break;
+				}
+				case 4:{
+					Scanner s1=new Scanner(System.in);
+					System.out.println("Enter the name of the beneficiary : ");
+					accholder=s1.nextLine( );
+					System.out.println("Enter the account number of the beneficiary : ");
+					accno=s1.nextInt( );
+					System.out.println("Enter Amount to be transferred : ");
+					transfer=s1.nextInt( );
+					if (balance >= transfer) {
+						balance = balance - transfer;
+						message=String.format("Transfer of Rs. %d to %s",transfer,accholder);
+						history.add(message);
+						System.out.println("\n"+"You have successfully transferred Rs. "+transfer+ " to "+accholder);
+						System.out.println(" Your current balance is Rs. "+balance);
+					}
+					else {
+						System.out.println("Insufficient Balance ");
+					}
+					break;
+				}
+				case 5:
+					System.out.println("Thank you !");
+					System.exit(0);  
+				}
+				}
+			}
+				
+			else {
+				System.out.println("Your Password is Incorrect");
+			}			
+		}
+		else {
+			if(pass.equals(password)) {
+				System.out.println("Your Username is Incorrect");
+			}
+			else {
+				System.out.println("Both Username and Password are Incorrect");
+			}	
+		}
+		
+		
+	}
+
+	}
+
+
+
